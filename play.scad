@@ -1,12 +1,10 @@
-$fn=100;
+$fn=64;
 
-z=20;
-x=5;
-y=7;
-
-
-cylinder(z,x,y);
-
-translate([0,10,10]) rotate([90,0,0]) cylinder(z,x,y);
-
-translate([-10,0,10]) rotate([0,90,0]) cylinder(z,x,y);
+union(){
+    difference() {
+        cube(30, center=true);
+        sphere(20, $fn=100);
+    }
+    translate([0,0,-15])
+        cylinder(h=40,r=13.5);
+}
