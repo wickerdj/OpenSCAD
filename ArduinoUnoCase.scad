@@ -19,11 +19,12 @@ OFFSET=1;
 HEIGHT=10;
 
 
-translate([-WIDTH/2,
-    -LENGTH/2,
-    -HEIGHT/2]) {
-    filletedPosts();
-}
+
+
+
+filletedPosts();
+usbandpower();
+
 
 // Top of Enclosure 
 translate([-15,-15,-15]) {
@@ -104,28 +105,47 @@ translate([0,0,0]) {
                 circle(RADIUS);
             }
         }
+        
+        
+        
     }
 }
 
+module usbandpower() {
+    translate([-WIDTH/2, -LENGTH/2, -HEIGHT/2]) {
+        power_size=[13.208, 8.89,10.922];
+        power_postion=[-1.524,3.81,1.524];
+
+        usb_size=[16.218, 11.849,10.668];
+        usb_postion=[-6.35,32.601,1.524];
+
+        translate(power_postion) cube(power_size);
+        translate(usb_postion) cube(usb_size);
+    }
+}
+
+
 module filletedPosts() {
-    post1=[13.97,2.54,0];
-    post2=[66.04,7.02,0];
-    post3=[66.04,35.6,0];
-    post4=[15.24,50.8,0];
+    translate([-WIDTH/2, -LENGTH/2, -HEIGHT/2]) {
+        post1=[13.97,2.54,0];
+        post2=[66.04,7.02,0];
+        post3=[66.04,35.6,0];
+        post4=[15.24,50.8,0];
 
-    offset=[-12,-5,0];
+        offset=[-12,-5,0];
 
-    translate(post1) { screwmount(); }
-    translate(post1 + offset) { text(str(1)); }
+        translate(post1) { screwmount(); }
+        translate(post1 + offset) { text(str(1)); }
 
-    translate(post2) { screwmount(); }
-    translate(post2 + offset) { text(str(2)); }
+        translate(post2) { screwmount(); }
+        translate(post2 + offset) { text(str(2)); }
 
-    translate(post3) { screwmount(); }
-    translate(post3 + offset) { text(str(3)); }
+        translate(post3) { screwmount(); }
+        translate(post3 + offset) { text(str(3)); }
 
-    translate(post4) { screwmount(); }
-    translate(post4 + offset) { text(str(4)); }
+        translate(post4) { screwmount(); }
+        translate(post4 + offset) { text(str(4)); }
+    }
 
     module screwmount() {
         difference() {
@@ -145,4 +165,5 @@ module filletedPosts() {
             }
         }
     }
+    
 }
